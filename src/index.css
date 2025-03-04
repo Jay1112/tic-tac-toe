@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} 
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.debug {
+  border: 1px solid red;
+}
+
+.mob-h-screen {
+  height: 100dvh;
+}
+
+.dark-class {
+  @apply bg-primary border-2 border-primary hover:bg-transparent cursor-pointer text-white hover:text-primary
+}
+
+.invert-dark-class {
+  @apply bg-transparent border-2 border-primary hover:bg-primary cursor-pointer text-primary hover:text-white
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 300ms ease-out;
+}

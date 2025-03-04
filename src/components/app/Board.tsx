@@ -4,7 +4,7 @@ import { checkWinner } from "../../utils/checkWinner";
 import clsx from "clsx";
 import Button from "../ui/Button";
 import Cell from "./Cell";
-import { GameItem, db } from "../../services/StorageService";
+import { MatchItem, db } from "../../services/StorageService";
 
 interface BoardProps {
   GRID_SIZE: number;
@@ -17,7 +17,7 @@ const Board: React.FC<BoardProps> = ({ GRID_SIZE, token }) => {
   const turnRef = useRef(token);
   const status = useRef("Current Turn");
   const winnerRef = useRef("");
-  const storageRef = useRef<GameItem[]>([]);
+  const storageRef = useRef<MatchItem[]>([]);
   const gameId = useRef<string>(new Date().getTime().toString());
 
   const handleResetGame = () => {
@@ -43,7 +43,7 @@ const Board: React.FC<BoardProps> = ({ GRID_SIZE, token }) => {
       y,
       turn: turnRef.current,
       color: turnRef.current === initialToken ? "bg-red-500" : "bg-green-500",
-      gameId : gameId.current
+      gameId: gameId.current,
     });
 
     const winner = checkWinner(updated, GRID_SIZE);
@@ -52,11 +52,19 @@ const Board: React.FC<BoardProps> = ({ GRID_SIZE, token }) => {
       turnRef.current = "";
       winnerRef.current = winner;
       db.addMatch(storageRef.current);
+      db.addGame({
+        gameId: gameId.current,
+        winner: "draw",
+      });
       return;
     } else if (winner) {
       status.current = "Winner";
       winnerRef.current = winner;
       db.addMatch(storageRef.current);
+      db.addGame({
+        gameId: gameId.current,
+        winner,
+      });
       return;
     }
 

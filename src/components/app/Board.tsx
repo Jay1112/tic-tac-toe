@@ -110,7 +110,7 @@ const Board: React.FC<BoardProps> = ({ GRID_SIZE, token }) => {
         <div
           className={clsx(
             "flex items-center justify-center flex-col rounded-md p-4 ",
-            winnerRef.current ? "bg-green-500 text-white" : ""
+            winnerRef.current ? "bg-indigo-600 text-white" : ""
           )}
         >
           {winnerRef.current !== "draw" && (

@@ -15,10 +15,10 @@ export const menuList: MenuItem[] = [
     style: "dark-class transition-all duration-300 hover:scale-[1.01]",
   },
   {
-    id: "game-stats",
-    title: "Game Stats",
+    id: "game-history",
+    title: "Game History",
     icon: "chart-bar",
-    link: "/game-stats/",
+    link: "/game-history/",
     style: "dark-class transition-all duration-300 hover:scale-[1.01]",
   },
   {

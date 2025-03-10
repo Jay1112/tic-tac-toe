@@ -25,7 +25,7 @@ const Cell: React.FC<CellProps> = ({
     <React.Fragment>
       <span
         className={clsx(
-          `inline-block border-2 border-[#000] flex items-center justify-center cursor-pointer `,
+          `inline-block border-2 border-[#000] flex items-center justify-center cursor-pointer transition-all duration-300`,
           cell
             ? cell === initialToken
               ? "bg-red-500"

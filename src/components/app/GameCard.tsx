@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../services/StorageService";
 import clsx from "clsx";
+import HistoryBoard from "./HistoryBoard";
 
 export interface GameCardItem {
   winner: string;
   gameId: string;
+  gridSize : number;
+  initialToken : string;
 }
 
 interface GameCardProps {
@@ -59,8 +62,13 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
           </div>
         </div>
       </div>
-      <div className={clsx("transition-all duration-300 overflow-hidden",toggle ? 'max-h-[500px]' : 'max-h-0')}>
-        <div className="h-[500px]">test</div>
+      <div
+        className={clsx(
+          "transition-all duration-300 overflow-hidden flex items-center justify-center",
+          toggle ? "max-h-[500px]" : "max-h-0"
+        )}
+      >
+        { toggle && stepList && stepList.length > 0 && <HistoryBoard GRID_SIZE={game.gridSize} token={game.initialToken} stepList={stepList}  />}
       </div>
     </div>
   );

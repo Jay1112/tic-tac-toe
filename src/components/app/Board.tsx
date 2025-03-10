@@ -55,6 +55,8 @@ const Board: React.FC<BoardProps> = ({ GRID_SIZE, token }) => {
       db.addGame({
         gameId: gameId.current,
         winner: "draw",
+        gridSize: GRID_SIZE,
+        initialToken
       });
       return;
     } else if (winner) {
@@ -64,6 +66,8 @@ const Board: React.FC<BoardProps> = ({ GRID_SIZE, token }) => {
       db.addGame({
         gameId: gameId.current,
         winner,
+        gridSize: GRID_SIZE,
+        initialToken
       });
       return;
     }

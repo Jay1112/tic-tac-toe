@@ -10,6 +10,8 @@ export interface MatchItem {
 export interface GameItem {
   gameId: string;
   winner: string;
+  gridSize: number;
+  initialToken : string;
 }
 
 class StorageService {

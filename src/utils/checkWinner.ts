@@ -16,7 +16,6 @@ export const checkWinner: (board: any, size: number) => string = (
       }
     }
     if (winner) {
-      console.log("winere", i);
       return symbol;
     }
   }

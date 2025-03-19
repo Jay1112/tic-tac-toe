@@ -11,7 +11,7 @@ export interface GameItem {
   gameId: string;
   winner: string;
   gridSize: number;
-  initialToken : string;
+  initialToken: string;
 }
 
 class StorageService {
@@ -154,6 +154,41 @@ class StorageService {
           reject(`Error fetching matches with gameId: ${gameId}`);
       } else {
         resolve([]);
+      }
+    });
+  }
+
+  async clearDatabase() {
+    return new Promise(async (resolve, reject) => {
+      if (!this.db) {
+        await this.init();
+      }
+
+      if (this.db) {
+        const transaction = this.db.transaction(
+          [this.tableName, this.gameTableName],
+          "readwrite"
+        );
+
+        const stepsStore = transaction.objectStore(this.tableName);
+        const gamesStore = transaction.objectStore(this.gameTableName);
+
+        const clearStepsRequest = stepsStore.clear();
+        const clearGamesRequest = gamesStore.clear();
+
+        let successCount = 0;
+
+        clearStepsRequest.onsuccess = () => {
+          successCount++;
+          if (successCount === 2) resolve("Database cleared successfully");
+        };
+        clearStepsRequest.onerror = () => reject("Error clearing steps");
+
+        clearGamesRequest.onsuccess = () => {
+          successCount++;
+          if (successCount === 2) resolve("Database cleared successfully");
+        };
+        clearGamesRequest.onerror = () => reject("Error clearing games");
       }
     });
   }

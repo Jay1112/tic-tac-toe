@@ -10,9 +10,11 @@ const ResetProgress: React.FC = () => {
     setLoading(true);
     db.clearDatabase()
       .then((data) => {
+        console.log(data);
         toast.success("Storage has been reseted.");
       })
       .catch((error) => {
+        console.log(error);
         toast.error("Error while reseting Storage");
       })
       .finally(() => {
